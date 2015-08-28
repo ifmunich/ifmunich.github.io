@@ -83,6 +83,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
+.page-content {
+    h1, h2, h3, h4, h5, h6 {
+        margin: 40px 0;
+    }
+}
 
 
 /**
@@ -91,10 +96,6 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
-
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
 
     &:hover {
         color: $text-color;
