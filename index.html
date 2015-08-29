@@ -34,8 +34,11 @@ layout: default
           if (response && !response.error) {
             for(i in response.data) {
               var event = response.data[i];
-              console.log(event);
-              $('#events').append('<div class="event"><h3><a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></h3><p class="date">'+event.start_time+'</p><p>'+event.description+'</p></div>');
+              var eventDate = new Date(event.start_time);
+              var today = new Date();
+              if (eventDate > today) {
+                $('#events').append('<div class="event"><h3><span class="date">'+eventDate.toISOString().slice(0, 10)+'</span> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></h3><p style="font-size: 12px">'+event.description+'</p></div>');
+              }
             }
           }
         }, {access_token: '1649516585286895|831e0422e36e1e9ec9e7595feed6d888'});
