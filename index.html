@@ -39,7 +39,7 @@ layout: default
               var eventDate = new Date(event.start_time);
               var today = new Date();
               if (eventDate > today) {
-                $('#events').append('<div class="event"><h3><span class="date">'+eventDate.toISOString().slice(0, 10)+'</span> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></h3><p style="font-size: 12px">'+event.description+'</p></div>');
+                $('#events').append('<li><span class="date">'+eventDate.toISOString().slice(0, 10)+'</span> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></li>');
               }
             }
           }
@@ -56,8 +56,10 @@ layout: default
 
     </script>
 
-    <div id="events">
-
+    <div>
+      <ul id="events">
+        
+      </ul>
     </div>
 
     <h2>Instagram hashtag #ifmunich updates</h2>
