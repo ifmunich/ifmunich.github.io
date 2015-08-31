@@ -1,0 +1,21 @@
+---
+layout: page
+title: Photos
+permalink: /photo/
+---
+
+<h2>Instagram hashtag #ifmunich updates</h2>
+
+<p>All Instagram photos with hashtag #ifmunich are shown here</p>
+
+<script type="text/javascript" src="/js/instafeed.min.js"></script>
+<script type="text/javascript">
+        var feed = new Instafeed({
+                get: 'tagged',
+                tagName: 'ifmunich',
+                clientId: 'b072370f1ea74f69867b308d72062038'
+        });
+        feed.run();
+</script>
+
+<div id="instafeed"></div>

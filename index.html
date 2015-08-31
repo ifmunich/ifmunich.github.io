@@ -3,24 +3,12 @@ layout: default
 ---
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/sugar-full.min.js"></script>
+
 
 <div class="home">
   <div>
-    <h1>Welcome to IFM</h1>
 
-    <div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true"
-        data-href="http://ifmunich.de">
-    </div>
-    
-    <br><br><br>
-
-    <div class="embed-responsive embed-responsive-4by3">
-      <iframe src="https://www.youtube.com/embed/JtJY3zJusrA" class="embed-responsive-item"></iframe>
-    </div>
 
     <h2>Upcoming Events</h2>
 
@@ -34,12 +22,13 @@ layout: default
 
         FB.api('/699655946784928/events', function(response) {
           if (response && !response.error) {
+            response.data.reverse();
             for(i in response.data) {
               var event = response.data[i];
               var eventDate = new Date(event.start_time);
               var today = new Date();
               if (eventDate > today) {
-                $('#events').append('<li><span class="date">'+eventDate.toISOString().slice(0, 10)+'</span> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></li>');
+                $('#events').append('<li><span class="date">'+eventDate.format("{Weekday}, {d} {Month} {yyyy}")+'</span> <br> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></li>');
               }
             }
           }
@@ -61,29 +50,6 @@ layout: default
         
       </ul>
     </div>
-
-    <h2>Instagram hashtag #ifmunich updates</h2>
-
-    <p>All Instagram photos with hashtag #ifmunich are shown here</p>
-
-    <script type="text/javascript" src="/js/instafeed.min.js"></script>
-    <script type="text/javascript">
-      var feed = new Instafeed({
-        get: 'tagged',
-        tagName: 'ifmunich',
-        clientId: 'b072370f1ea74f69867b308d72062038'
-      });
-      feed.run();
-    </script>
-
-    <div id="instafeed"></div>
-
-    <h2>Twitter chat</h2>
-
-    <p>All tweets with hashtag #ifmunich are shown here</p>
-
-    <a class="twitter-timeline" href="https://twitter.com/hashtag/ifmunich" data-widget-id="637037186110590976">#ifmunich Tweets</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
   </div>
 
