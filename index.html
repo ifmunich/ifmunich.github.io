@@ -28,7 +28,20 @@ layout: default
               var eventDate = new Date(event.start_time);
               var today = new Date();
               if (eventDate > today) {
-                $('#events').append('<li><span class="date">'+eventDate.format("{Weekday}, {d} {Month} {yyyy}")+'</span> <br> <a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'</a></li>');
+                var dayHash = eventDate.format('date{yyyy}{MM}{dd}');
+
+                if (!$('#'+dayHash).length) {
+                  $('#events').append('<h3 id="'+dayHash+'" class="date">'+eventDate.format("{Weekday}, {d} {Month} {yyyy}")+'</h3>');
+                }
+
+                $('#events').append('<a target="_blank" href="http://facebook.com/events/'+event.id+'">'+event.name+'<div class="cover" id="event'+event.id+'"></div></a>');
+
+                FB.api('/'+event.id+'?fields=cover', function(response) {
+                  if (response && !response.error && response.cover.source) {
+                    $('#event'+response.id).html('<img src="'+response.cover.source+'">');
+                  }
+                }, {access_token: '1649516585286895|831e0422e36e1e9ec9e7595feed6d888'});
+
               }
             }
           }
