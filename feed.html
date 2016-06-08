@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/sugar-full.min.js"></script>
+
+
+<div class="home">
+  <div>
+
+
+    <h2>Upcoming Events</h2>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1649516585286895',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+
+        FB.api('/337962059578245/feed', function(response) {
+          if (response && !response.error) {
+            for(i in response.data) {
+              var message = response.data[i].message;
+              $('#posts').append('<div class="post">'+message+'</div>');
+            }
+          }
+        }, {access_token: 'EAACEdEose0cBABNkhrHObkltznpAAF405JRmEQZBbMx7VZBsvyQuuGRinRbI1kDYJiNndpwM8KtHod4URclReLZBq5TB1rKOpZCQGAEsT0WJo5vZAsj8vp62ZCwgR7MZBMnsBhRhgZAnL90giCaZBVim5XaBf9KMpDpzERSvw3wdXKwZDZD'});
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+
+    <div>
+      <ul id="posts">
+        
+      </ul>
+    </div>
+
+  </div>
+
+</div>
